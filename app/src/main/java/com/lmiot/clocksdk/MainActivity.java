@@ -12,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AlarmManagerUtil. setAlarm(this, 1, 18, 56, 12, 0, "闹钟提醒", 2);
+      /*  AlarmManagerUtil. setAlarm(this, 1, 18, 56, 12, 0, "闹钟提醒", 2);
         AlarmManagerUtil. setAlarm(this, 1, 18, 57, 12, 0, "闹钟提醒", 2);
-
+*/
     }
 }

@@ -43,13 +43,12 @@ public class AlarmManagerUtil {
      * @param tips            闹钟提示信息
      * @param soundOrVibrator 2表示声音和震动都执行，1表示只有铃声提醒，0表示只有震动提醒
      */
-    public static void setAlarm(Context context, int flag, int hour, int minute, int id, int
+    public static void setAlarm(Context context, int flag,int year, int month,int day, int hour, int minute, int id, int
             week, String tips, int soundOrVibrator) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
         long intervalMillis = 0;
-        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get
-                (Calendar.DAY_OF_MONTH), hour, minute, 10);
+        calendar.set(year, month, day, hour, minute, 0);
         if (flag == 0) {
             intervalMillis = 0;
         } else if (flag == 1) {
@@ -61,6 +60,7 @@ public class AlarmManagerUtil {
         intent.putExtra("intervalMillis", intervalMillis);
         intent.putExtra("msg", tips);
         intent.putExtra("id", id);
+        intent.putExtra("timer", hour+":"+minute);
         intent.putExtra("soundOrVibrator", soundOrVibrator);
         PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent
                 .FLAG_CANCEL_CURRENT);

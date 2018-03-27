@@ -18,15 +18,12 @@ public class SimpleDialog extends Dialog {
     protected static int default_height = WindowManager.LayoutParams.WRAP_CONTENT;// 默认高度
     public static int TYPE_TWO_BT = 2;
     public static int TYPE_NO_BT = 0;
-    public TextView dialog_title;
-    public EditText dialog_message;
-    public Button bt_cancel, bt_confirm;
-    private LinearLayout ll_button;
+    public TextView dialog_timer;
+    public TextView dialog_detail;
+    public Button dialog_sure;
     protected Context mContext;
     private View.OnClickListener listener;
     private View customView;
-    //	@Bind(R.id.icon)
-    ImageView icon;
 
 
     public SimpleDialog(Context context, int style) {
@@ -34,14 +31,9 @@ public class SimpleDialog extends Dialog {
         mContext = context;
         customView = LayoutInflater.from(context).inflate(R.layout.dialog_simple, null);
 
-        icon = (ImageView) customView.findViewById(R.id.icon);
-
-        ll_button = (LinearLayout) customView.findViewById(R.id.ll_button);
-        dialog_title = (TextView) customView.findViewById(R.id.dialog_title);
-        setTitle("提示信息");
-        dialog_message = (EditText) customView.findViewById(R.id.dialog_message);
-        dialog_message.clearFocus();
-        bt_confirm = (Button) customView.findViewById(R.id.dialog_confirm);
+        dialog_timer = (TextView) customView.findViewById(R.id.id_timer);
+        dialog_detail = (TextView) customView.findViewById(R.id.id_detial);
+        dialog_sure = (Button) customView.findViewById(R.id.id_sure);
     }
 
     @Override
@@ -62,26 +54,19 @@ public class SimpleDialog extends Dialog {
 
     public SimpleDialog setClickListener(View.OnClickListener listener) {
         this.listener = listener;
-        bt_confirm.setOnClickListener(listener);
+        dialog_sure.setOnClickListener(listener);
         return this;
     }
 
     public SimpleDialog setMessage(String message) {
-        dialog_message.setText(message);
+        dialog_detail.setText(message);
         return this;
     }
 
-    public SimpleDialog setTitle(String title) {
-        dialog_title.setText(title);
+    public SimpleDialog setTimer(String timer) {
+        dialog_timer.setText(timer);
         return this;
     }
 
-    public SimpleDialog setIcon(int iconResId) {
-        dialog_title.setVisibility(View.GONE);
-        icon.setVisibility(View.VISIBLE);
-        icon.setBackgroundResource(iconResId);
-
-        return this;
-    }
 
 }
