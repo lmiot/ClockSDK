@@ -36,19 +36,15 @@ public class AlarmManagerUtil {
     /**
      * @param flag            周期性时间间隔的标志,flag = 0 表示一次性的闹钟, flag = 1 表示每天提醒的闹钟(1天的时间间隔),flag = 2
      *                        表示按周每周提醒的闹钟（一周的周期性时间间隔）
-     * @param hour            时
-     * @param minute          分
      * @param id              闹钟的id
      * @param week            week=0表示一次性闹钟或者按天的周期性闹钟，非0 的情况下是几就代表以周为周期性的周几的闹钟
      * @param tips            闹钟提示信息
      * @param soundOrVibrator 2表示声音和震动都执行，1表示只有铃声提醒，0表示只有震动提醒
      */
-    public static void setAlarm(Context context, int flag,int year, int month,int day, int hour, int minute, int id, int
+    public static void setAlarm(Context context, int flag,   Calendar calendar,int id, int
             week, String tips, int soundOrVibrator) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
         long intervalMillis = 0;
-        calendar.set(year, month, day, hour, minute, 0);
         if (flag == 0) {
             intervalMillis = 0;
         } else if (flag == 1) {
@@ -60,7 +56,7 @@ public class AlarmManagerUtil {
         intent.putExtra("intervalMillis", intervalMillis);
         intent.putExtra("msg", tips);
         intent.putExtra("id", id);
-        intent.putExtra("timer", hour+":"+minute);
+        intent.putExtra("timer", calendar.get(Calendar.HOUR_OF_DAY)+":"+ calendar.get(Calendar.MINUTE));
         intent.putExtra("soundOrVibrator", soundOrVibrator);
         PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent
                 .FLAG_CANCEL_CURRENT);
