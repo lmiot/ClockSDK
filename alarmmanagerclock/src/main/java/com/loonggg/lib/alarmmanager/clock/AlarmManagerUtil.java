@@ -23,7 +23,7 @@ public class AlarmManagerUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             am.setWindow(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
 
-            //DD
+            //DDDDDD
         }
     }
 
