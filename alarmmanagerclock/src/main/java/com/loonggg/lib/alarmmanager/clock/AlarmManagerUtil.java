@@ -38,6 +38,7 @@ public class AlarmManagerUtil {
     /**
      * @param flag            周期性时间间隔的标志,flag = 0 表示一次性的闹钟, flag = 1 表示每天提醒的闹钟(1天的时间间隔),flag = 2
      *                        表示按周每周提醒的闹钟（一周的周期性时间间隔）
+     *
      * @param id              闹钟的id
      * @param week            week=0表示一次性闹钟或者按天的周期性闹钟，非0 的情况下是几就代表以周为周期性的周几的闹钟
      * @param tips            闹钟提示信息
@@ -71,6 +72,8 @@ public class AlarmManagerUtil {
             } else {
                 am.setRepeating(AlarmManager.RTC_WAKEUP, calMethod(week, calendar.getTimeInMillis
                         ()), intervalMillis, sender);
+
+
             }
         }
     }
