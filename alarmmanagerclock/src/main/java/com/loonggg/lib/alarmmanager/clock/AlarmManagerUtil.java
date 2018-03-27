@@ -22,6 +22,8 @@ public class AlarmManagerUtil {
         int interval = (int) intent.getLongExtra("intervalMillis", 0);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             am.setWindow(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
+
+            //DD
         }
     }
 
